@@ -7,5 +7,6 @@
   "description": "Accesorio para motocross: BANCO HIDRAULICO",
   "images": [
     "assets/images/accesorios/banco-hidraulico.jpg"
-  ]
+  ],
+  "image": "assets/images/accesorios/banco-hidraulico.jpg"
 }
