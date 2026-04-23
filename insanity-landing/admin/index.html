@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  
+  <title>Admin - INSANITY CMS</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Decap CMS -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  
+  <style>
+    :root {
+      --matte-black: #080510;
+      --carbon-black: #0d0b18;
+      --graphite: #151225;
+      --neon-pink: #ff2a7a;
+      --electric-cyan: #00f0ff;
+      --neon-purple: #b829dd;
+      --clean-white: #ffffff;
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: var(--graphite);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--neon-pink);
+      border-radius: 4px;
+    }
+    
+    /* Loading screen */
+    .cms-loading {
+      position: fixed;
+      inset: 0;
+      background: var(--matte-black);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      font-family: 'Orbitron', sans-serif;
+    }
+    
+    .cms-loading.hidden {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s, visibility 0.5s;
+    }
+    
+    .cms-logo {
+      font-size: 3rem;
+      font-weight: 900;
+      letter-spacing: 0.2em;
+      color: var(--clean-white);
+      margin-bottom: 30px;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    
+    .cms-logo span {
+      color: var(--neon-pink);
+    }
+    
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
+      }
+      to {
+        text-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink), 0 0 60px var(--electric-cyan);
+      }
+    }
+    
+    .cms-loading-bar {
+      width: 200px;
+      height: 3px;
+      background: var(--graphite);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    
+    .cms-loading-bar::after {
+      content: '';
+      display: block;
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--neon-pink), var(--electric-cyan), var(--neon-purple));
+      animation: loading 1.5s ease-in-out infinite;
+      border-radius: 3px;
+    }
+    
+    @keyframes loading {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(250%); }
+    }
+    
+    .cms-loading-text {
+      margin-top: 20px;
+      color: var(--clean-white);
+      font-size: 0.875rem;
+      letter-spacing: 0.2em;
+      opacity: 0.7;
+    }
+    
+    /* Hide loading when CMS loads */
+    [data-testid="cms-main"] ~ .cms-loading {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div class="cms-loading" id="cms-loading">
+    <div class="cms-logo">INSANITY<span>.</span>CMS</div>
+    <div class="cms-loading-bar"></div>
+    <div class="cms-loading-text">CARGANDO PANEL DE ADMINISTRACIÓN...</div>
+  </div>
+  
+  <!-- Decap CMS Mount Point -->
+  <div id="nc-root"></div>
+  
+  <script>
+    // Hide loading screen when CMS is ready
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const loading = document.getElementById('cms-loading');
+        if (loading) {
+          loading.classList.add('hidden');
+        }
+      }, 2000);
+    });
+    
+    // Initialize CMS
+    CMS.init();
+  </script>
+</body>
+</html>

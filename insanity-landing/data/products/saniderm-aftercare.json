@@ -1,0 +1,14 @@
+{
+  "name": "Saniderm Aftercare",
+  "slug": "saniderm-aftercare",
+  "category": "safety",
+  "price": 25,
+  "oldPrice": null,
+  "badge": "",
+  "icon": "🩹",
+  "description": "Vendaje adhesivo para cuidado post-tatuaje",
+  "rating": 5,
+  "featured": false,
+  "inStock": true,
+  "order": 12
+}

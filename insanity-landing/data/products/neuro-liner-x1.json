@@ -1,0 +1,14 @@
+{
+  "name": "Neuro Liner X1",
+  "slug": "neuro-liner-x1",
+  "category": "machines",
+  "price": 320,
+  "oldPrice": null,
+  "badge": "",
+  "icon": "🎯",
+  "description": "Especializada en líneas finas y detalles precisos",
+  "rating": 4,
+  "featured": false,
+  "inStock": true,
+  "order": 3
+}

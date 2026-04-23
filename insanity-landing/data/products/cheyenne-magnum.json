@@ -1,0 +1,14 @@
+{
+  "name": "Cheyenne Magnum",
+  "slug": "cheyenne-magnum",
+  "category": "cartridges",
+  "price": 32,
+  "oldPrice": null,
+  "badge": "",
+  "icon": "🔸",
+  "description": "Cartuchos Magnum para sombreado y relleno",
+  "rating": 5,
+  "featured": false,
+  "inStock": true,
+  "order": 9
+}

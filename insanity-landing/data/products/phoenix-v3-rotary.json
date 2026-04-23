@@ -1,0 +1,14 @@
+{
+  "name": "Phoenix V3 Rotary",
+  "slug": "phoenix-v3-rotary",
+  "category": "machines",
+  "price": 299,
+  "oldPrice": null,
+  "badge": "Nuevo",
+  "icon": "🔫",
+  "description": "Máquina rotativa profesional con motor de alto torque, perfecta para líneas y sombreado",
+  "rating": 5,
+  "featured": true,
+  "inStock": true,
+  "order": 1
+}

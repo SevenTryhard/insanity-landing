@@ -1,0 +1,14 @@
+{
+  "name": "Kwadron Starter Kit",
+  "slug": "kwadron-starter-kit",
+  "category": "cartridges",
+  "price": 45,
+  "oldPrice": 56,
+  "badge": "-20%",
+  "icon": "📦",
+  "description": "Kit de cartuchos desechables de alta calidad para principiantes",
+  "rating": 4,
+  "featured": true,
+  "inStock": true,
+  "order": 7
+}

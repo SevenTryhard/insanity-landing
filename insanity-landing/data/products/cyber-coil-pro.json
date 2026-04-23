@@ -1,0 +1,14 @@
+{
+  "name": "Cyber Coil Pro",
+  "slug": "cyber-coil-pro",
+  "category": "machines",
+  "price": 450,
+  "oldPrice": null,
+  "badge": "",
+  "icon": "⚡",
+  "description": "Máquina de bobina profesional con acabado cibernético neón",
+  "rating": 5,
+  "featured": false,
+  "inStock": true,
+  "order": 2
+}

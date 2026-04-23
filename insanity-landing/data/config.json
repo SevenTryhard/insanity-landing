@@ -1,0 +1,95 @@
+{
+  "site": {
+    "name": "INSANITY",
+    "tagline": "Tattoo Supplies Premium",
+    "slogan": "Equipamiento premium para artistas del tatuaje",
+    "contactEmail": "info@insanity-tattoo.com",
+    "phone": "+52 55 1234 5678",
+    "address": "CDMX, México",
+    "hours": "Lun-Vie: 9:00 - 18:00"
+  },
+  "social": {
+    "instagram": "https://instagram.com/insanity.tattoo",
+    "facebook": "https://facebook.com/insanitytattoo",
+    "twitter": "https://twitter.com/insanitytattoo",
+    "tiktok": "https://tiktok.com/@insanity.tattoo"
+  },
+  "hero": {
+    "titleLine1": "EQUIPAMIENTO",
+    "titleLine2": "PARA ARTISTAS",
+    "highlight": "SIN LÍMITES",
+    "subtitle": "Tecnología de vanguardia para tatuadores que exigen excelencia. Calidad profesional, precisión absoluta, resultados insanos.",
+    "ctaPrimary": "Explorar Catálogo",
+    "ctaSecondary": "Conocer Más",
+    "badge": "Premium Tattoo Supplies"
+  },
+  "benefits": [
+    {
+      "icon": "🚀",
+      "title": "Envío Rápido",
+      "text": "Entrega en 24-48 horas a todo el país. Envío gratis desde $150."
+    },
+    {
+      "icon": "✓",
+      "title": "Garantía Total",
+      "text": "30 días de garantía en todos los productos. Sin preguntas."
+    },
+    {
+      "icon": "💎",
+      "title": "Calidad Premium",
+      "text": "Solo trabajamos con marcas certificadas y probadas por profesionales."
+    },
+    {
+      "icon": "🎧",
+      "title": "Soporte 24/7",
+      "text": "Atención personalizada para artistas, por artistas."
+    }
+  ],
+  "testimonials": [
+    {
+      "author": "Dark Rider",
+      "role": "Studio Owner, CDMX",
+      "text": "Las máquinas de Insanity son otro nivel. Precisión absoluta y durabilidad increíble. Llevo 2 años usándolas y nunca me han fallado.",
+      "rating": 5,
+      "avatar": "DR"
+    },
+    {
+      "author": "María Luna",
+      "role": "Freelance Artist",
+      "text": "La calidad de las tintas es consistente. Negros profundos, colores vibrantes. Mis healed tattoos hablan por sí solos.",
+      "rating": 5,
+      "avatar": "ML"
+    },
+    {
+      "author": "Cyber X",
+      "role": "Convention Artist",
+      "text": "El servicio es insano. Envíos rapidísimos y atención personalizada. Entienden lo que necesitamos los tatuadores.",
+      "rating": 5,
+      "avatar": "CX"
+    }
+  ],
+  "contact": {
+    "address": "Av. Insurgentes Sur 1234, Col. Del Valle, CDMX",
+    "phone": "+52 55 1234 5678",
+    "email": "info@insanity-tattoo.com",
+    "hours": "Lunes a Viernes: 9:00 - 18:00",
+    "mapUrl": "https://maps.google.com/?q=CDMX"
+  },
+  "seo": {
+    "title": "INSANITY | Tattoo Supplies Premium",
+    "description": "Equipamiento premium para artistas del tatuaje. Máquinas, tintas, cartuchos y bioseguridad de la más alta calidad.",
+    "keywords": "tattoo supplies, máquinas de tatuaje, tintas, cartuchos, insumos para tatuadores",
+    "ogImage": "/images/og-image.jpg"
+  },
+  "footer": {
+    "description": "Equipamiento premium para artistas del tatuaje que exigen excelencia. Tecnología, calidad y pasión en cada producto.",
+    "copyright": "© 2026 Insanity Tattoo Supplies. Todos los derechos reservados."
+  },
+  "features": {
+    "cubeScroll": true,
+    "cyberEffects": true,
+    "customCursor": true,
+    "particles": true,
+    "glitchText": true
+  }
+}

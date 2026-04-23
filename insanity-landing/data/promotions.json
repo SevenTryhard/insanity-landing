@@ -1,0 +1,86 @@
+{
+  "activePromo": "cyber-monday",
+  "mainPromotions": [
+    {
+      "id": "cyber-monday",
+      "title": "CYBER MONDAY",
+      "subtitle": "Streetwear Drop",
+      "discount": "50%",
+      "description": "La espera terminó. Descuentos de hasta 50% en productos seleccionados. Solo por tiempo limitado.",
+      "endDate": "2026-12-31T23:59:59",
+      "isActive": true,
+      "color": "pink",
+      "image": ""
+    },
+    {
+      "id": "starter-pack",
+      "title": "STARTER PACK PRO",
+      "subtitle": "Hot Deal",
+      "discount": "35%",
+      "description": "Kit completo para comenzar tu estudio profesional de tatuajes",
+      "endDate": "2026-11-30T23:59:59",
+      "isActive": true,
+      "color": "cyan",
+      "image": ""
+    },
+    {
+      "id": "ink-master",
+      "title": "INK MASTER COLLECTION",
+      "subtitle": "Limited Edition",
+      "discount": "25%",
+      "description": "Set de 24 colores premium seleccionados por expertos",
+      "endDate": "2026-10-31T23:59:59",
+      "isActive": false,
+      "color": "purple",
+      "image": ""
+    },
+    {
+      "id": "cartridge-bulk",
+      "title": "CARTRIDGE BULK BOX",
+      "subtitle": "Flash Sale",
+      "discount": "40%",
+      "description": "Caja con 100 cartuchos desechables de alta calidad",
+      "endDate": "2026-09-30T23:59:59",
+      "isActive": false,
+      "color": "pink",
+      "image": ""
+    }
+  ],
+  "flashSales": [
+    {
+      "productId": "power-supply-v2",
+      "productName": "Power Supply V2",
+      "discountPercent": 50,
+      "price": 75,
+      "oldPrice": 150,
+      "icon": "🔌"
+    },
+    {
+      "productId": "watercolor-set",
+      "productName": "Watercolor Set",
+      "discountPercent": 45,
+      "price": 55,
+      "oldPrice": 100,
+      "icon": "🎨"
+    },
+    {
+      "productId": "ring-light-pro",
+      "productName": "Ring Light Pro",
+      "discountPercent": 60,
+      "price": 80,
+      "oldPrice": 200,
+      "icon": "💡"
+    }
+  ],
+  "banners": [
+    {
+      "id": "hero-banner",
+      "type": "hero",
+      "title": "CYBER WEEK",
+      "subtitle": "Hasta 50% OFF",
+      "cta": "Ver Ofertas",
+      "link": "promociones.html",
+      "active": true
+    }
+  ]
+}

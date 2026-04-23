@@ -1,0 +1,301 @@
+backend:
+  name: github
+  repo: SevenTryhard/insanity-landing
+  branch: main
+  base_url: https://api.netlify.com
+  auth_scope: repo
+  use_graphql: true
+
+# Configuración de medios
+media_folder: "insanity-landing/images/uploads"
+public_folder: "/images/uploads"
+
+# Configuración del sitio
+site_url: https://insanity-landing.netlify.app
+logo_url: /images/logo.png
+
+# Habilitar edición editorial
+publish_mode: editorial_workflow
+
+# Colecciones (tipos de contenido)
+collections:
+
+  # ============================================
+  # PRIORIDAD #1: PRODUCTOS
+  # ============================================
+  - name: "products"
+    label: "📦 Productos"
+    label_singular: "Producto"
+    description: "Gestiona el catálogo de productos de la tienda"
+    folder: "insanity-landing/data/products"
+    create: true
+    slug: "{{fields.slug}}"
+    extension: json
+    format: json
+    fields:
+      - label: "Nombre del Producto"
+        name: "name"
+        widget: "string"
+        required: true
+        hint: "Ej: Phoenix V3 Rotary"
+
+      - label: "Slug (URL amigable)"
+        name: "slug"
+        widget: "string"
+        required: true
+        hint: "Ej: phoenix-v3-rotary (sin espacios, solo guiones)"
+
+      - label: "Categoría"
+        name: "category"
+        widget: "relation"
+        collection: "categories"
+        search_fields: ["name"]
+        value_field: "id"
+        display_fields: ["name"]
+        required: true
+
+      - label: "Precio ($)"
+        name: "price"
+        widget: "number"
+        value_type: "int"
+        required: true
+        min: 0
+        hint: "Precio actual del producto"
+
+      - label: "Precio Anterior (si aplica)"
+        name: "oldPrice"
+        widget: "number"
+        value_type: "int"
+        required: false
+        hint: "Deja vacío si no hay descuento"
+
+      - label: "Badge/Etiqueta"
+        name: "badge"
+        widget: "select"
+        options:
+          - { label: "Sin etiqueta", value: "" }
+          - { label: "Nuevo", value: "Nuevo" }
+          - { label: "Bestseller", value: "Bestseller" }
+          - { label: "-20%", value: "-20%" }
+          - { label: "-30%", value: "-30%" }
+          - { label: "-40%", value: "-40%" }
+          - { label: "-50%", value: "-50%" }
+        default: ""
+        hint: "Etiqueta especial que aparece en la esquina"
+
+      - label: "Imagen"
+        name: "image"
+        widget: "image"
+        required: false
+        hint: "Sube una imagen del producto (si no hay, se usa icono por defecto)"
+
+      - label: "Icono Emoji"
+        name: "icon"
+        widget: "string"
+        required: false
+        default: "📦"
+        hint: "Emoji que aparece si no hay imagen (Ej: 🔫, 🖤, 📦)"
+
+      - label: "Descripción"
+        name: "description"
+        widget: "text"
+        required: false
+        hint: "Descripción corta del producto"
+
+      - label: "Rating (Estrellas)"
+        name: "rating"
+        widget: "select"
+        options: [1, 2, 3, 4, 5]
+        default: 5
+        required: true
+
+      - label: "Destacado"
+        name: "featured"
+        widget: "boolean"
+        default: false
+        hint: "Marca si quieres que aparezca en la sección de destacados de la home"
+
+      - label: "En Stock"
+        name: "inStock"
+        widget: "boolean"
+        default: true
+
+      - label: "Orden"
+        name: "order"
+        widget: "number"
+        value_type: "int"
+        default: 0
+        hint: "Número para ordenar productos (menor = primero)"
+
+  # --------------------------------------------
+  # CATEGORÍAS DE PRODUCTOS
+  # --------------------------------------------
+  - name: "categories"
+    label: "🏷️ Categorías"
+    label_singular: "Categoría"
+    description: "Categorías de productos (Máquinas, Tintas, Cartuchos, etc.)"
+    folder: "insanity-landing/data/categories"
+    create: true
+    slug: "{{fields.id}}"
+    extension: json
+    format: json
+    fields:
+      - label: "ID (identificador único)"
+        name: "id"
+        widget: "string"
+        required: true
+        hint: "Ej: machines, inks, cartridges (sin espacios)"
+
+      - label: "Nombre"
+        name: "name"
+        widget: "string"
+        required: true
+        hint: "Ej: Máquinas, Tintas, Cartuchos"
+
+      - label: "Icono Emoji"
+        name: "icon"
+        widget: "string"
+        default: "📦"
+        required: true
+        hint: "Emoji representativo (Ej: ⚡, 🖤, 📦, 🛡️)"
+
+      - label: "Slug (URL)"
+        name: "slug"
+        widget: "string"
+        required: true
+        hint: "maquinas, tintas, cartuchos (para URLs)"
+
+      - label: "Descripción"
+        name: "description"
+        widget: "string"
+        required: false
+        hint: "Descripción corta de la categoría"
+
+  # ============================================
+  # PRIORIDAD #2: PROMOCIONES
+  # ============================================
+  - name: "promotions"
+    label: "🎁 Promociones"
+    label_singular: "Promoción"
+    description: "Gestiona promociones activas y ofertas flash"
+    files:
+      - label: "Configuración de Promociones"
+        name: "promotions-config"
+        file: "insanity-landing/data/promotions.json"
+        fields:
+          - label: "Promoción Activa"
+            name: "activePromo"
+            widget: "string"
+            required: false
+            hint: "ID de la promoción principal activa"
+
+          - label: "Promociones Principales"
+            name: "mainPromotions"
+            widget: "list"
+            fields:
+              - { label: "ID", name: "id", widget: "string", required: true }
+              - { label: "Título", name: "title", widget: "string", required: true }
+              - { label: "Subtítulo", name: "subtitle", widget: "string", required: false }
+              - { label: "Descuento (texto)", name: "discount", widget: "string", hint: "Ej: 50%", required: false }
+              - { label: "Descripción", name: "description", widget: "text", required: true }
+              - { label: "Fecha Fin", name: "endDate", widget: "datetime", required: false }
+              - { label: "Activa", name: "isActive", widget: "boolean", default: true }
+              - label: "Color del Tema"
+                name: "color"
+                widget: "select"
+                options:
+                  - { label: "Rosa Neón", value: "pink" }
+                  - { label: "Cian Neón", value: "cyan" }
+                  - { label: "Púrpura Neón", value: "purple" }
+                default: "pink"
+
+          - label: "Ofertas Flash"
+            name: "flashSales"
+            widget: "list"
+            fields:
+              - { label: "ID Producto", name: "productId", widget: "string", required: true }
+              - { label: "Descuento %", name: "discountPercent", widget: "number", value_type: "int", min: 1, max: 99 }
+              - { label: "Precio Final", name: "price", widget: "number", value_type: "int" }
+              - { label: "Precio Anterior", name: "oldPrice", widget: "number", value_type: "int" }
+
+  # ============================================
+  # PRIORIDAD #3: CONFIGURACIÓN GENERAL
+  # ============================================
+  - name: "config"
+    label: "⚙️ Configuración del Sitio"
+    description: "Configuración general: textos del hero, beneficios, testimonios, redes sociales"
+    files:
+      - label: "Configuración General"
+        name: "site-config"
+        file: "insanity-landing/data/config.json"
+        fields:
+          # Sección: Información del Sitio
+          - label: "Información del Sitio"
+            name: "site"
+            widget: "object"
+            fields:
+              - { label: "Nombre", name: "name", widget: "string", default: "INSANITY" }
+              - { label: "Tagline", name: "tagline", widget: "string", default: "Tattoo Supplies Premium" }
+              - { label: "Email de Contacto", name: "contactEmail", widget: "string" }
+
+          # Sección: Redes Sociales
+          - label: "Redes Sociales"
+            name: "social"
+            widget: "object"
+            fields:
+              - { label: "Instagram", name: "instagram", widget: "string", required: false }
+              - { label: "Facebook", name: "facebook", widget: "string", required: false }
+              - { label: "Twitter", name: "twitter", widget: "string", required: false }
+              - { label: "TikTok", name: "tiktok", widget: "string", required: false }
+
+          # Sección: Hero (Página principal)
+          - label: "Sección Hero (Home)"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Línea 1 del Título", name: "titleLine1", widget: "string", default: "EQUIPAMIENTO" }
+              - { label: "Línea 2 del Título", name: "titleLine2", widget: "string", default: "PARA ARTISTAS" }
+              - { label: "Texto Destacado (Neón)", name: "highlight", widget: "string", default: "SIN LÍMITES" }
+              - { label: "Subtítulo", name: "subtitle", widget: "text" }
+              - { label: "Texto Botón Principal", name: "ctaPrimary", widget: "string", default: "Explorar Catálogo" }
+              - { label: "Texto Botón Secundario", name: "ctaSecondary", widget: "string", default: "Conocer Más" }
+
+          # Sección: Beneficios
+          - label: "Beneficios"
+            name: "benefits"
+            widget: "list"
+            fields:
+              - { label: "Icono Emoji", name: "icon", widget: "string", default: "✓" }
+              - { label: "Título", name: "title", widget: "string", required: true }
+              - { label: "Descripción", name: "text", widget: "text", required: true }
+
+          # Sección: Testimonios
+          - label: "Testimonios"
+            name: "testimonials"
+            widget: "list"
+            fields:
+              - { label: "Autor", name: "author", widget: "string", required: true }
+              - { label: "Rol/Profesión", name: "role", widget: "string", required: true }
+              - { label: "Texto del Testimonio", name: "text", widget: "text", required: true }
+              - { label: "Rating (1-5)", name: "rating", widget: "number", value_type: "int", min: 1, max: 5, default: 5 }
+              - { label: "Iniciales Avatar", name: "avatar", widget: "string", hint: "Ej: DR, ML, CX" }
+
+          # Sección: Contacto
+          - label: "Información de Contacto"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Dirección", name: "address", widget: "text" }
+              - { label: "Teléfono", name: "phone", widget: "string" }
+              - { label: "Horario", name: "hours", widget: "string" }
+
+# Configuración de editor
+editor:
+  preview: true
+
+# Configuración de i18n (opcional, para futuro)
+i18n:
+  structure: multiple_files
+  locales:
+    - es
+  default_locale: es
