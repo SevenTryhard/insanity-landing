@@ -1,0 +1,8 @@
+# Cloudflare Pages Redirects
+# Asegura que admin/ funcione correctamente
+
+/admin /admin/ 301
+/admin/* /admin/:splat 200
+
+# SPA fallback para rutas del sitio principal
+/* /index.html 200
