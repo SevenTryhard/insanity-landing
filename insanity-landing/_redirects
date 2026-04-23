@@ -1,8 +1,15 @@
 # Cloudflare Pages Redirects
-# Reglas procesadas de arriba a abajo
+# Reglas procesadas de arriba a abajo - PRIMERA coincidencia gana
 
-# 1. Excluir admin del fallback SPA
+# 1. Archivos específicos de admin/editor (SIN redirección)
+/admin.html /admin.html 200
+/editor.html /editor.html 200
+
+# 2. Carpeta admin y sus archivos
 /admin/* /admin/:splat 200
 
-# 2. SPA fallback para todo lo demás
+# 3. Archivos HTML específicos (SIN redirección)
+/*.html /:splat.html 200
+
+# 4. SPA fallback SOLO para rutas que no son archivos
 /* /index.html 200
