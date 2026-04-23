@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de Productos - INSANITY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --matte-black: #080510;
+            --carbon-black: #0d0b18;
+            --graphite: #151225;
+            --charcoal: #1f1c33;
+            --neon-pink: #ff2a7a;
+            --neon-pink-bright: #ff6b9d;
+            --electric-cyan: #00f0ff;
+            --neon-purple: #b829dd;
+            --clean-white: #ffffff;
+            --soft-silver: #e8e6f0;
+            --muted-gray: #9a96b0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--matte-black);
+            color: var(--clean-white);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: 0.15em;
+        }
+        
+        .logo span {
+            color: var(--neon-pink);
+            text-shadow: 0 0 20px var(--neon-pink);
+        }
+        
+        .subtitle {
+            color: var(--muted-gray);
+            margin-top: 10px;
+            font-size: 0.95rem;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .tab {
+            padding: 12px 28px;
+            background: var(--graphite);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--soft-silver);
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .tab:hover {
+            background: rgba(255, 42, 122, 0.1);
+            border-color: var(--neon-pink);
+        }
+        
+        .tab.active {
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+            border-color: transparent;
+            color: var(--clean-white);
+        }
+        
+        .panel {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .panel.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Product List */
+        .product-list {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .product-item {
+            background: var(--carbon-black);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 60px 1fr auto;
+            gap: 20px;
+            align-items: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .product-item:hover {
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 20px rgba(255, 42, 122, 0.2);
+        }
+        
+        .product-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--graphite);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        
+        .product-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--clean-white);
+        }
+        
+        .product-meta {
+            color: var(--muted-gray);
+            font-size: 0.85rem;
+        }
+        
+        .product-price {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px rgba(255, 42, 122, 0.5);
+        }
+        
+        .product-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background: var(--neon-pink);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+        
+        /* Editor Form */
+        .editor-form {
+            background: var(--carbon-black);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--soft-silver);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 18px;
+            background: var(--graphite);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--clean-white);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 20px rgba(255, 42, 122, 0.3);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .btn {
+            padding: 16px 32px;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+            color: var(--clean-white);
+            box-shadow: 0 4px 15px rgba(255, 42, 122, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255, 42, 122, 0.5);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--soft-silver);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-left: 10px;
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--neon-pink);
+            color: var(--clean-white);
+        }
+        
+        .output-panel {
+            background: var(--graphite);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        
+        .output-panel h3 {
+            color: var(--electric-cyan);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+        
+        .output-panel pre {
+            background: var(--matte-black);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            color: var(--soft-silver);
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .instructions {
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .instructions h3 {
+            color: var(--electric-cyan);
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+        
+        .instructions ol {
+            margin-left: 20px;
+            color: var(--soft-silver);
+            line-height: 1.8;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--matte-black);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        
+        .loading-overlay.hidden {
+            display: none;
+        }
+        
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(255, 42, 122, 0.3);
+            border-top-color: var(--neon-pink);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay" id="loading">
+        <div class="spinner"></div>
+        <p style="margin-top: 20px; color: var(--muted-gray);">Cargando productos...</p>
+    </div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">INSANITY<span>.</span>EDITOR</div>
+            <p class="subtitle">Editor visual de productos y promociones</p>
+        </header>
+        
+        <div class="tabs">
+            <button class="tab active" data-tab="products">📦 Productos</button>
+            <button class="tab" data-tab="editor">✏️ Editar Producto</button>
+            <button class="tab" data-tab="promotions">🎁 Promociones</button>
+            <button class="tab" data-tab="json">📄 Ver JSON</button>
+        </div>
+        
+        <!-- Products List Panel -->
+        <div class="panel active" id="products-panel">
+            <div class="instructions">
+                <h3>⚡ Instrucciones</h3>
+                <ol>
+                    <li>Haz clic en cualquier producto para editarlo</li>
+                    <li>Modifica los campos en el panel "Editar Producto"</li>
+                    <li>Copia el JSON generado</li>
+                    <li>Ve a GitHub y pega el JSON en el archivo correspondiente</li>
+                    <li>Haz commit y los cambios se verán en 1-2 minutos</li>
+                </ol>
+            </div>
+            <div class="product-list" id="product-list">
+                <!-- Products loaded here -->
+            </div>
+        </div>
+        
+        <!-- Editor Panel -->
+        <div class="panel" id="editor-panel">
+            <div class="instructions">
+                <h3>✏️ Modo de Uso</h3>
+                <ol>
+                    <li>Selecciona un producto de la lista o edita manualmente</li>
+                    <li>Modifica los campos que necesites</li>
+                    <li>El JSON se actualiza automáticamente abajo</li>
+                    <li>Copia el JSON y súbelo a GitHub</li>
+                </ol>
+            </div>
+            
+            <div class="editor-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nombre del Producto</label>
+                        <input type="text" id="edit-name" placeholder="Ej: Phoenix V3 Rotary">
+                    </div>
+                    <div class="form-group">
+                        <label>Slug (ID único)</label>
+                        <input type="text" id="edit-slug" placeholder="Ej: phoenix-v3-rotary">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Precio ($)</label>
+                        <input type="number" id="edit-price" placeholder="299">
+                    </div>
+                    <div class="form-group">
+                        <label>Precio Anterior (opcional)</label>
+                        <input type="number" id="edit-oldprice" placeholder="Dejar vacío si no hay descuento">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Categoría</label>
+                        <select id="edit-category">
+                            <option value="machines">Máquinas</option>
+                            <option value="inks">Tintas</option>
+                            <option value="cartridges">Cartuchos</option>
+                            <option value="safety">Bioseguridad</option>
+                            <option value="accessories">Accesorios</option>
+                            <option value="supplies">Suministros</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Rating (Estrellas)</label>
+                        <select id="edit-rating">
+                            <option value="5">★★★★★ (5)</option>
+                            <option value="4">★★★★☆ (4)</option>
+                            <option value="3">★★★☆☆ (3)</option>
+                            <option value="2">★★☆☆☆ (2)</option>
+                            <option value="1">★☆☆☆☆ (1)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Badge / Etiqueta</label>
+                    <select id="edit-badge">
+                        <option value="">Sin etiqueta</option>
+                        <option value="Nuevo">Nuevo</option>
+                        <option value="Bestseller">Bestseller</option>
+                        <option value="-20%">-20%</option>
+                        <option value="-30%">-30%</option>
+                        <option value="-40%">-40%</option>
+                        <option value="-50%">-50%</option>
+                    </select>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Icono Emoji</label>
+                        <input type="text" id="edit-icon" placeholder="Ej: 🔫, 🖤, 📦">
+                    </div>
+                    <div class="form-group">
+                        <label>Orden</label>
+                        <input type="number" id="edit-order" placeholder="0">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Descripción</label>
+                    <textarea id="edit-description" rows="3" placeholder="Descripción del producto..."></textarea>
+                </div>
+                
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button class="btn btn-primary" onclick="generateJSON()">🔄 Generar JSON</button>
+                    <button class="btn btn-secondary" onclick="clearForm()">🗑️ Limpiar</button>
+                </div>
+                
+                <div class="output-panel" id="editor-output" style="display: none;">
+                    <h3>📋 JSON Generado (Copia esto y súbelo a GitHub)</h3>
+                    <pre id="json-output"></pre>
+                    <button class="btn btn-primary" onclick="copyJSON()" style="margin-top: 15px;">📋 Copiar JSON</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Promotions Panel -->
+        <div class="panel" id="promotions-panel">
+            <div class="instructions">
+                <h3>🎁 Editar Promociones</h3>
+                <ol>
+                    <li>Edita las promociones activas</li>
+                    <li>El archivo JSON se mostrará abajo</li>
+                    <li>Copia y súbelo a GitHub en <code>data/promotions.json</code></li>
+                </ol>
+            </div>
+            <div id="promotions-list" class="product-list">
+                <!-- Promotions loaded here -->
+            </div>
+        </div>
+        
+        <!-- JSON View Panel -->
+        <div class="panel" id="json-panel">
+            <div class="instructions">
+                <h3>📄 Vista de Todos los JSON</h3>
+                <p>Estos son los archivos que debes editar en GitHub:</p>
+            </div>
+            <div id="all-json-view" style="background: var(--graphite); padding: 20px; border-radius: 10px; overflow-x: auto;">
+                <p style="color: var(--muted-gray);">Cargando...</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Data storage
+        let productsData = [];
+        let categoriesData = [];
+        let promotionsData = null;
+        let configData = null;
+        
+        // Load all data
+        async function loadData() {
+            try {
+                // Load categories
+                const categoriesFiles = ['machines', 'inks', 'cartridges', 'safety', 'accessories', 'supplies'];
+                categoriesData = await Promise.all(
+                    categoriesFiles.map(async f => {
+                        try {
+                            const r = await fetch(`data/categories/${f}.json`);
+                            return r.ok ? await r.json() : null;
+                        } catch(e) { return null; }
+                    })
+                );
+                categoriesData = categoriesData.filter(c => c);
+                
+                // Load products
+                const productFiles = [
+                    'phoenix-v3-rotary', 'cyber-coil-pro', 'neuro-liner-x1',
+                    'dynamic-black-set', 'neon-color-pack', 'pure-white-30ml',
+                    'kwadron-starter-kit', 'tattoo-flux-rl', 'cheyenne-magnum',
+                    'guantes-nitrilo-100pk', 'green-soap-500ml', 'saniderm-aftercare'
+                ];
+                
+                productsData = await Promise.all(
+                    productFiles.map(async f => {
+                        try {
+                            const r = await fetch(`data/products/${f}.json`);
+                            return r.ok ? await r.json() : null;
+                        } catch(e) { return null; }
+                    })
+                );
+                productsData = productsData.filter(p => p).sort((a,b) => a.order - b.order);
+                
+                // Load promotions
+                try {
+                    const r = await fetch('data/promotions.json');
+                    if (r.ok) promotionsData = await r.json();
+                } catch(e) {}
+                
+                // Load config
+                try {
+                    const r = await fetch('data/config.json');
+                    if (r.ok) configData = await r.json();
+                } catch(e) {}
+                
+                renderProducts();
+                renderPromotions();
+                renderAllJSON();
+                
+                document.getElementById('loading').classList.add('hidden');
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('loading').innerHTML = `
+                    <p style="color: var(--neon-pink);">Error cargando datos</p>
+                    <p style="color: var(--muted-gray); font-size: 0.85rem;">${error.message}</p>
+                `;
+            }
+        }
+        
+        function getCategoryName(id) {
+            const cat = categoriesData.find(c => c.id === id);
+            return cat ? cat.name : id;
+        }
+        
+        function renderProducts() {
+            const container = document.getElementById('product-list');
+            container.innerHTML = productsData.map(p => `
+                <div class="product-item" onclick="editProduct('${p.slug}')">
+                    <div class="product-icon">${p.icon || '📦'}</div>
+                    <div class="product-info">
+                        <h3>${p.name} ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}</h3>
+                        <div class="product-meta">${getCategoryName(p.category)} • ${'★'.repeat(p.rating)}</div>
+                    </div>
+                    <div class="product-price">$${p.price}</div>
+                </div>
+            `).join('');
+        }
+        
+        function renderPromotions() {
+            const container = document.getElementById('promotions-list');
+            if (!promotionsData) {
+                container.innerHTML = '<p style="color: var(--muted-gray);">No se pudieron cargar las promociones</p>';
+                return;
+            }
+            
+            const active = promotionsData.mainPromotions?.find(p => p.id === promotionsData.activePromo);
+            
+            container.innerHTML = `
+                <div class="instructions" style="background: rgba(255, 42, 122, 0.1); border-color: var(--neon-pink);">
+                    <h3 style="color: var(--neon-pink);">🎯 Promoción Activa: ${active?.title || 'Ninguna'}</h3>
+                    <p>Descuento: <strong>${active?.discount || '0%'}</strong></p>
+                </div>
+                <h3 style="margin: 30px 0 15px; color: var(--soft-silver);">Todas las Promociones:</h3>
+                ${promotionsData.mainPromotions?.map(p => `
+                    <div class="product-item">
+                        <div class="product-icon">🎁</div>
+                        <div class="product-info">
+                            <h3>${p.title} ${p.isActive ? '<span class="product-badge">Activa</span>' : ''}</h3>
+                            <div class="product-meta">${p.subtitle} • Descuento: ${p.discount}</div>
+                        </div>
+                        <div class="product-price">-${p.discount}</div>
+                    </div>
+                `).join('') || '<p style="color: var(--muted-gray);">No hay promociones</p>'}
+            `;
+        }
+        
+        function editProduct(slug) {
+            const product = productsData.find(p => p.slug === slug);
+            if (!product) return;
+            
+            document.getElementById('edit-name').value = product.name;
+            document.getElementById('edit-slug').value = product.slug;
+            document.getElementById('edit-price').value = product.price;
+            document.getElementById('edit-oldprice').value = product.oldPrice || '';
+            document.getElementById('edit-category').value = product.category;
+            document.getElementById('edit-rating').value = product.rating;
+            document.getElementById('edit-badge').value = product.badge || '';
+            document.getElementById('edit-icon').value = product.icon || '📦';
+            document.getElementById('edit-order').value = product.order || 0;
+            document.getElementById('edit-description').value = product.description || '';
+            
+            // Switch to editor tab
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            document.querySelector('[data-tab="editor"]').classList.add('active');
+            document.getElementById('editor-panel').classList.add('active');
+            
+            generateJSON();
+        }
+        
+        function generateJSON() {
+            const json = {
+                name: document.getElementById('edit-name').value,
+                slug: document.getElementById('edit-slug').value,
+                category: document.getElementById('edit-category').value,
+                price: parseInt(document.getElementById('edit-price').value) || 0,
+                oldPrice: parseInt(document.getElementById('edit-oldprice').value) || null,
+                badge: document.getElementById('edit-badge').value || null,
+                icon: document.getElementById('edit-icon').value || '📦',
+                description: document.getElementById('edit-description').value || '',
+                rating: parseInt(document.getElementById('edit-rating').value) || 5,
+                featured: false,
+                inStock: true,
+                order: parseInt(document.getElementById('edit-order').value) || 0
+            };
+            
+            if (!json.oldPrice) delete json.oldPrice;
+            if (!json.badge) delete json.badge;
+            
+            document.getElementById('json-output').textContent = JSON.stringify(json, null, 2);
+            document.getElementById('editor-output').style.display = 'block';
+        }
+        
+        function clearForm() {
+            document.querySelectorAll('.editor-form input, .editor-form textarea').forEach(el => el.value = '');
+            document.getElementById('edit-category').selectedIndex = 0;
+            document.getElementById('edit-rating').value = '5';
+            document.getElementById('edit-badge').value = '';
+            document.getElementById('editor-output').style.display = 'none';
+        }
+        
+        function copyJSON() {
+            const json = document.getElementById('json-output').textContent;
+            navigator.clipboard.writeText(json).then(() => {
+                alert('✅ JSON copiado al portapapeles. Ahora ve a GitHub y pégalo en el archivo correspondiente.');
+            });
+        }
+        
+        function renderAllJSON() {
+            const container = document.getElementById('all-json-view');
+            container.innerHTML = `
+                <h3 style="color: var(--neon-pink); margin-bottom: 20px;">📦 products.json (ejemplo de 1 producto)</h3>
+                <pre style="background: var(--matte-black); padding: 15px; border-radius: 8px; margin-bottom: 30px; overflow-x: auto;">${JSON.stringify(productsData[0], null, 2)}</pre>
+                
+                <h3 style="color: var(--electric-cyan); margin-bottom: 20px;">🏷️ promotions.json</h3>
+                <pre style="background: var(--matte-black); padding: 15px; border-radius: 8px; margin-bottom: 30px; overflow-x: auto;">${JSON.stringify(promotionsData, null, 2) || 'No cargado'}</pre>
+                
+                <h3 style="color: var(--neon-purple); margin-bottom: 20px;">⚙️ config.json (sección hero)</h3>
+                <pre style="background: var(--matte-black); padding: 15px; border-radius: 8px; overflow-x: auto;">${JSON.stringify(configData?.hero || {}, null, 2)}</pre>
+            `;
+        }
+        
+        // Tab switching
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = tab.dataset.tab;
+                
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+                
+                tab.classList.add('active');
+                document.getElementById(`${target}-panel`).classList.add('active');
+            });
+        });
+        
+        // Load data on startup
+        loadData();
+    </script>
+</body>
+</html>
