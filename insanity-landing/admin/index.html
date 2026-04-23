@@ -144,8 +144,11 @@
       }, 2000);
     });
     
-    // Initialize CMS
-    CMS.init();
+    // Initialize CMS with custom config path
+    CMS.init({
+      config: 'admin/config.yml'
+    });
   </script>
+  <!-- Redeploy timestamp: 2026-04-23 -->
 </body>
 </html>
