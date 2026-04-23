@@ -1,8 +1,8 @@
 # Cloudflare Pages Redirects
-# Asegura que admin/ funcione correctamente
+# Reglas procesadas de arriba a abajo
 
-/admin /admin/ 301
+# 1. Excluir admin del fallback SPA
 /admin/* /admin/:splat 200
 
-# SPA fallback para rutas del sitio principal
+# 2. SPA fallback para todo lo demás
 /* /index.html 200
