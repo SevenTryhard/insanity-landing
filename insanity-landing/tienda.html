@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Catálogo completo de productos Insanity Tattoo Supplies. Máquinas, tintas, cartuchos y más.">
+  <meta name="theme-color" content="#0a0a0a">
+  
+  <title>TIENDA | Insanity Tattoo Supplies</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div class="loading-screen">
+    <div class="loading-logo">INSANITY</div>
+    <div class="loading-bar"></div>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor"></div>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <a href="index.html" class="navbar-logo">INSANITY<span>.</span></a>
+      
+      <ul class="navbar-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="tienda.html">Tienda</a></li>
+        <li><a href="promociones.html">Promociones</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+      
+      <button class="navbar-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="hero-background">
+      <div class="hero-gradient"></div>
+      <div class="hero-grid"></div>
+    </div>
+    
+    <div class="page-header-content reveal">
+      <h1 class="text-gradient">CATÁLOGO</h1>
+      <p>Explora nuestra colección completa de productos premium para tatuadores profesionales</p>
+    </div>
+  </section>
+
+  <!-- Shop Section -->
+  <section class="section-padding">
+    <div class="container">
+      <!-- Filters -->
+      <div class="shop-filters reveal">
+        <button class="filter-btn active" data-category="all">Todos</button>
+        <button class="filter-btn" data-category="machines">Máquinas</button>
+        <button class="filter-btn" data-category="inks">Tintas</button>
+        <button class="filter-btn" data-category="cartridges">Cartuchos</button>
+        <button class="filter-btn" data-category="safety">Bioseguridad</button>
+        <button class="filter-btn" data-category="accessories">Accesorios</button>
+      </div>
+      
+      <!-- Products Grid -->
+      <div class="products-grid">
+        <!-- Machines -->
+        <div class="product-card reveal delay-100" data-category="machines">
+          <span class="product-badge">Nuevo</span>
+          <div class="product-image">
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:5rem;background:linear-gradient(135deg, #1a1a1a, #242424);">🔫</div>
+            <div class="product-overlay">
+              <button class="product-quick-add" onclick="Toast.show('Producto agregado al carrito')">Agregar</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="product-category">Máquinas</span>
+            <h3 class="product-name">Phoenix V3 Rotary</h3>
+            <div class="product-footer">
+              <span class="product-price">$299</span>
+              <div class="product-rating">
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card reveal delay-200" data-category="machines">
+          <div class="product-image">
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:5rem;background:linear-gradient(135deg, #1a1a1a, #242424);">⚡</div>
+            <div class="product-overlay">
+              <button class="product-quick-add" onclick="Toast.show('Producto agregado al carrito')">Agregar</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="product-category">Máquinas</span>
+            <h3 class="product-name">Cyber Coil Pro</h3>
+            <div class="product-footer">
+              <span class="product-price">$450</span>
+              <div class="product-rating">
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card reveal delay-300" data-category="machines">
+          <div class="product-image">
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:5rem;background:linear-gradient(135deg, #1a1a1a, #242424);">🎯</div>
+            <div class="product-overlay">
+              <button class="product-quick-add" onclick="Toast.show('Producto agregado al carrito')">Agregar</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="product-category">Máquinas</span>
+            <h3 class="product-name">Neuro Liner X1</h3>
+            <div class="product-footer">
+              <span class="product-price">$320</span>
+              <div class="product-rating">
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span>☆</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Inks -->
+        <div class="product-card reveal delay-100" data-category="inks">
+          <div class="product-image">
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:5rem;background:linear-gradient(135deg, #1a1a1a, #242424);">🖤</div>
+            <div class="product-overlay">
+              <button class="product-quick-add" onclick="Toast.show('Producto agregado al carrito')">Agregar</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="product-category">Tintas</span>
+            <h3 class="product-name">Dynamic Black Set</h3>
+            <div class="product-footer">
+              <span class="product-price">$89</span>
+              <div class="product-rating">
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card reveal delay-200" data-category="inks">
+          <span class="product-badge">Bestseller</span>
+          <div class="product-image">
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:5rem;background:linear-gradient(135deg, #1a1a1a, #242424);">🌈</div>
+            <div class="product-overlay">
+              <button class="product-quick-add" onclick="Toast.show('Producto agregado al carrito')">Agregar</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="product-category">Tintas</span>
+            <h3 class="product-name">Neon Color Pack</h3>
+            <div class="product-footer">
+              <span class="product-price">$145</span>
+              <div class="product-rating">
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card reveal delay-300" data-category="inks">
+          <div class="product-image">
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:5rem;background:linear-gradient(135deg, #1a1a1a, #242424);">⬜</div>
+            <div class="product-overlay">
+              <button class="product-quick-add" onclick="Toast.show('Producto agregado al carrito')">Agregar</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="product-category">Tintas</span>
+            <h3 class="product-name">Pure White 30ml</h3>
+            <div class="product-footer">
+              <span class="product-price">$35</span>
+              <div class="product-rating">
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span>☆</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Cartridges -->
+        <div class="product-card reveal delay-100" data-category="cartridges">
+          <span class="product-badge">-20%</span>
+          <div class="product-image">
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:5rem;background:linear-gradient(135deg, #1a1a1a, #242424);">📦</div>
+            <div class="product-overlay">
+              <button class="product-quick-add" onclick="Toast.show('Producto agregado al carrito')">Agregar</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="product-category">Cartuchos</span>
+            <h3 class="product-name">Kwadron Starter Kit</h3>
+            <div class="product-footer">
+              <span class="product-price">$45 <span class="old">$56</span></span>
+              <div class="product-rating">
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span>☆</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card reveal delay-200" data-category="cartridges">
+          <div class="product-image">
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:5rem;background:linear-gradient(135deg, #1a1a1a, #242424);">🔹</div>
+            <div class="product-overlay">
+              <button class="product-quick-add" onclick="Toast.show('Producto agregado al carrito')">Agregar</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="product-category">Cartuchos</span>
+            <h3 class="product-name">Tattoo Flux RL</h3>
+            <div class="product-footer">
+              <span class="product-price">$28</span>
+              <div class="product-rating">
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card reveal delay-300" data-category="cartridges">
+          <div class="product-image">
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:5rem;background:linear-gradient(135deg, #1a1a1a, #242424);">🔸</div>
+            <div class="product-overlay">
+              <button class="product-quick-add" onclick="Toast.show('Producto agregado al carrito')">Agregar</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="product-category">Cartuchos</span>
+            <h3 class="product-name">Cheyenne Magnum</h3>
+            <div class="product-footer">
+              <span class="product-price">$32</span>
+              <div class="product-rating">
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Safety -->
+        <div class="product-card reveal delay-100" data-category="safety">
+          <div class="product-image">
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:5rem;background:linear-gradient(135deg, #1a1a1a, #242424);">🧤</div>
+            <div class="product-overlay">
+              <button class="product-quick-add" onclick="Toast.show('Producto agregado al carrito')">Agregar</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="product-category">Bioseguridad</span>
+            <h3 class="product-name">Guantes Nitrilo 100pk</h3>
+            <div class="product-footer">
+              <span class="product-price">$22</span>
+              <div class="product-rating">
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card reveal delay-200" data-category="safety">
+          <div class="product-image">
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:5rem;background:linear-gradient(135deg, #1a1a1a, #242424);">🧴</div>
+            <div class="product-overlay">
+              <button class="product-quick-add" onclick="Toast.show('Producto agregado al carrito')">Agregar</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="product-category">Bioseguridad</span>
+            <h3 class="product-name">Green Soap 500ml</h3>
+            <div class="product-footer">
+              <span class="product-price">$18</span>
+              <div class="product-rating">
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span>☆</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card reveal delay-300" data-category="safety">
+          <div class="product-image">
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:5rem;background:linear-gradient(135deg, #1a1a1a, #242424);">🩹</div>
+            <div class="product-overlay">
+              <button class="product-quick-add" onclick="Toast.show('Producto agregado al carrito')">Agregar</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="product-category">Bioseguridad</span>
+            <h3 class="product-name">Saniderm Aftercare</h3>
+            <div class="product-footer">
+              <span class="product-price">$25</span>
+              <div class="product-rating">
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+                <span class="filled">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo">INSANITY<span>.</span></div>
+        <p class="footer-description">
+          Equipamiento premium para artistas del tatuaje que exigen excelencia. 
+          Tecnología, calidad y pasión en cada producto.
+        </p>
+        <div class="footer-social">
+          <a href="#" class="social-link">📷</a>
+          <a href="#" class="social-link">📘</a>
+          <a href="#" class="social-link">🐦</a>
+          <a href="#" class="social-link">🎵</a>
+        </div>
+      </div>
+      
+      <div class="footer-column">
+        <h4 class="footer-title">Tienda</h4>
+        <ul class="footer-links">
+          <li><a href="tienda.html">Catálogo Completo</a></li>
+          <li><a href="tienda.html#machines">Máquinas</a></li>
+          <li><a href="tienda.html#inks">Tintas</a></li>
+          <li><a href="tienda.html#cartridges">Cartuchos</a></li>
+          <li><a href="promociones.html">Promociones</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column">
+        <h4 class="footer-title">Soporte</h4>
+        <ul class="footer-links">
+          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="#">Envíos</a></li>
+          <li><a href="#">Devoluciones</a></li>
+          <li><a href="#">Garantías</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column">
+        <h4 class="footer-title">Legal</h4>
+        <ul class="footer-links">
+          <li><a href="#">Términos</a></li>
+          <li><a href="#">Privacidad</a></li>
+          <li><a href="#">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026 Insanity Tattoo Supplies. Todos los derechos reservados.</p>
+      <div class="footer-legal">
+        <a href="#">Términos y Condiciones</a>
+        <a href="#">Política de Privacidad</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+</body>
+</html>
